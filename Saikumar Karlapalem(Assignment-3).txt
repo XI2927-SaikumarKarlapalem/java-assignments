@@ -1,0 +1,233 @@
+1.
+
+
+create table student(
+stid bigint primary key,
+stname text,
+age int,
+unique(stname),
+unique(stid)
+);
+
+
+
+
+insert into student values(1,'satish',18);
+insert into student values(2,'sriram',19);
+insert into student values(3,'ramu',20);
+
+
+
+
+select * from student;
+select count(*) from student;
+select count(student.stname) from student;
+select stname from student where age=18;
+select * from student where age>17;
+select * from student where stname like 'r%';
+select * from student where age between 19 and 20;
+update student set stname='ramula' where stname='ramu';
+select * from student;
+
+
+
+...............................................................................................
+
+2.create table student(
+stid bigint primary key,
+stname text,
+age int
+);
+
+
+
+insert into student values(1,'satish',18);
+insert into student values(2,'sriram',19);
+insert into student values(3,'ramu',20);
+
+
+create table subjects(
+sbid bigint ,
+subname text,
+st_id int,
+foreign key(st_id) references student(stid)
+);
+
+
+
+
+insert into subjects values(1,'hindi',1);
+insert into subjects values(2,'science',1);
+insert into subjects values(3,'telugu',1);
+insert into subjects values(1,'hindi',2);
+insert into subjects values(2,'science',2);
+insert into subjects values(3,'telugu',2);
+insert into subjects values(1,'hindi',3);
+insert into subjects values(2,'science',3);
+insert into subjects values(3,'telugu',3);
+
+select  stname,subname from subjects join student on subjects.st_id=student.stid where stname='satish' or stname='ramu';
+..................................................................................................................................
+
+create table student(
+stid bigint primary key,
+stname text,
+age int
+);
+
+
+create table address(
+adid bigint primary key,
+ads text,
+s_id int,
+foreign key(s_id) references student(stid)
+);
+
+
+
+
+insert into student values(1,'satish',18);
+insert into student values(2,'sriram',19);
+insert into student values(3,'ramu',20);
+
+
+
+insert into address values(1,'hyderabad',3);
+insert into address values(2,'vijayawada',1);
+insert into address values (3,'guntur',2);
+
+
+
+
+
+
+
+select  stname,ads from address join student on address.s_id=student.stid;
+
+
+.........................................................................................................................................................
+
+create table student(
+stid bigint primary key,
+stname text,
+age int
+);
+
+create table hobbies(
+hoid bigint,
+honame text,
+s_d int,
+foreign key(s_d) references student(stid)
+);
+
+insert into student values(1,'satish',18);
+insert into student values(2,'sriram',19);
+insert into student values(3,'ramu',20);
+
+
+insert into hobbies values(1,'playing cricket',3);
+insert into hobbies values(2,'playing volleyball',2);
+insert into hobbies values(1,'playing cricket',1);
+insert into hobbies values(3,'playing chess',2);
+insert into hobbies values(4,'playing carroms',1);
+
+
+
+
+select  stid,honame,stname from hobbies join student on hobbies.s_d=student.stid;
+
+............................................................................................................................................................
+
+
+create table student(
+stid bigint primary key,
+stname text,
+age int
+);
+
+create table faculty(
+faid int ,
+faname text ,
+f_id int,
+foreign key(f_id) references student(stid)
+
+);
+
+insert into student values(1,'satish',18);
+insert into student values(2,'sriram',19);
+insert into student values(3,'ramu',20);
+
+
+insert into faculty values(1,'rao',1);
+insert into faculty values(1,'rao',2);
+insert into faculty values(1,'rao',3);
+
+
+
+
+
+select  stname,faname from faculty join student on faculty.f_id=student.stid;
+
+.....................................................................................................................................................................
+
+
+3.
+
+
+create table student(
+stid bigint primary key,
+stname text,
+age int
+);
+
+
+
+
+create table subjects(
+sbid bigint ,
+subname text ,
+s_id int,
+foreign key(s_id) references student(stid)
+
+);
+
+insert into student values(1,'satish',18);
+insert into student values(2,'sriram',19);
+insert into student values(3,'ramu',20);
+
+insert into subjects values(1,'science',1);
+insert into subjects values(2,'science',2);
+insert into subjects values(3,'science',3);
+
+insert into subjects values(1,'maths',1);
+insert into subjects values(1,'english',2);
+
+select count(student.stname) as science_count from student join subjects on subjects.s_id=student.stid where subname='science';
+select count(student.stname) as maths_count from student join subjects on subjects.s_id=student.stid where subname='maths';
+select count(student.stname) as english_count from student join subjects on subjects.s_id=student.stid where subname='english';
+......................................................................................................................................................
+4.
+
+
+create table student(
+stid bigint primary key,
+stname text,
+unique(stname),
+age int,
+unique(age)
+);
+
+insert into student values(1,'kumar',19);
+insert into student values(2,'ravi',22);
+insert into student values(3,'rajesh',20);
+
+select * from student;
+
+
+
+
+
+
+
+
+
